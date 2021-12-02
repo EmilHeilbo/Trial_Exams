@@ -35,8 +35,6 @@ public class Worker extends Thread {
                     default:
                         System.out.println("[Worker] ERROR: Command not found (" + cmd + ")");
                         break;
-                    case "LOGIN":
-                        break;
                     case "EVAL":
                         String number = tokens[1];
                         eval(writer, number);

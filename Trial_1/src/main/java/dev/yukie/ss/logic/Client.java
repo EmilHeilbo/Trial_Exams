@@ -16,8 +16,6 @@ public class Client extends Thread {
 
             int _numbers[] = {82, 19, 43, 2, 61};
 
-            
-            send(writer, "LOGIN");
             for (int n : _numbers) {
                 send(writer, "EVAL " + Integer.toString(n));
                 System.out.println("[Client] " + reader.readLine());

@@ -25,16 +25,24 @@
       "sourceFileMap": {
         "/Views": "${workspaceFolder}/Views"
       },
-      "pipeProgram": "bash",
-      "pipeArgs": [
-        "-c"
-      ],
+      "linux": {
+        "pipeProgram": "bash",
+        "pipeArgs": [
+          "-c"
+        ]
+      },
       "debuggerPath": "/usr/bin/netcoredbg"
     },
     {
       "name": ".NET Core Attach",
       "type": "coreclr",
-      "request": "attach"
+      "request": "attach",
+      "linux": {
+        "pipeProgram": "bash",
+        "pipeArgs": [
+          "-c"
+        ]
+      }
     }
   ]
 }

@@ -16,16 +16,23 @@
       // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
       "console": "internalConsole",
       "stopAtEntry": false,
-      "pipeProgram": "bash",
-      "pipeArgs": [
-        "-c"
-      ],
-      "debuggerPath": "/usr/bin/netcoredbg"
+      "linux": {
+        "pipeProgram": "bash",
+        "pipeArgs": [
+          "-c"
+        ]
+      }
     },
     {
       "name": ".NET Core Attach",
       "type": "coreclr",
-      "request": "attach"
+      "request": "attach",
+      "linux": {
+        "pipeProgram": "bash",
+        "pipeArgs": [
+          "-c"
+        ]
+      }
     }
   ]
 }

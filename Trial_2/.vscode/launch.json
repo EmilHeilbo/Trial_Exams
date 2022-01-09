@@ -20,7 +20,7 @@
       "pipeArgs": [
         "-c"
       ],
-      "debuggerPath": "/home/your_user_name/bin/netcoredbg/netcoredbg"
+      "debuggerPath": "/usr/bin/netcoredbg"
     },
     {
       "name": ".NET Core Attach",

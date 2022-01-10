@@ -12,7 +12,7 @@ void Read(string file)
     settings.IgnoreWhitespace = true;
     settings.Async = true;
     var reader = XmlReader.Create(file, settings);
-    reader.MoveToContent();
+    reader.MoveToContent();     // Skip the XML Header
     string name = "",
         cylinders = "",
         country = "";
@@ -37,7 +37,6 @@ void Read(string file)
                     case "cylinders": cylinders = reader.ReadString(); break;
                     case "country": country = reader.ReadString(); break;
                 }
-                // Console.WriteLine("{0}: {1};", reader.Name, reader.ReadString());
             }
         }
         else if (reader.Name == "car" && !reader.IsStartElement())

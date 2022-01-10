@@ -17,21 +17,15 @@
       "console": "internalConsole",
       "stopAtEntry": false,
       "linux": {
-        "pipeProgram": "bash",
-        "pipeArgs": [
-          "-c"
-        ]
-      }
-    },
-    {
-      "name": ".NET Core Attach",
-      "type": "coreclr",
-      "request": "attach",
-      "linux": {
-        "pipeProgram": "bash",
-        "pipeArgs": [
-          "-c"
-        ]
+        "console": "integratedTerminal",
+        "internalConsoleOptions": "openOnSessionStart",
+        "pipeTransport": {
+          "pipeCwd": "${workspaceFolder}",
+          "pipeProgram": "/usr/bin/fish",
+          "pipeArgs": ["-c"],
+          "debuggerPath": "/usr/bin/netcoredbg",
+          "quoteArgs": true
+        }
       }
     }
   ]

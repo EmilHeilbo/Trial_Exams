@@ -4,14 +4,14 @@ using Models;
 // XML ==> XmlReader ==> object "Car" in ArrayList _cars ==> XmlWriter
 var _cars = new ArrayList();
 
-void Read()
+void Read(string file)
 {
     var settings = new XmlReaderSettings();
     settings.IgnoreComments = true;
     settings.IgnoreProcessingInstructions = true;
     settings.IgnoreWhitespace = true;
     settings.Async = true;
-    var reader = XmlReader.Create("cars.xml", settings);
+    var reader = XmlReader.Create(file, settings);
     reader.MoveToContent();
     string name = "",
         cylinders = "",
@@ -48,12 +48,12 @@ void Read()
         Console.WriteLine($"{car.ToString()}\n");
 }
 
-void Write()
+void Write(string file)
 {
     var settings = new XmlWriterSettings();
     settings.Indent = true;
     settings.NewLineChars = "\r\n";
-    var writer = XmlWriter.Create("out.xml", settings);
+    var writer = XmlWriter.Create(file, settings);
     writer.WriteStartDocument();
     writer.WriteStartElement("cars");
     foreach (Car car in _cars)
@@ -69,5 +69,5 @@ void Write()
     writer.Close();
 }
 
-Read();
-Write();
+Read("cars.xml");
+Write("_cars.xml");

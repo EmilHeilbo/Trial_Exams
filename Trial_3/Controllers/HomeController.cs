@@ -13,6 +13,12 @@ public class HomeController : Controller
 
     public IActionResult Index() => View(_context.Products);
 
+    public IActionResult Update(int id, int age)
+    {
+        ViewData["PriceTotal"] = _context.Products.Find(id)?.CalculateFinalPrice(age);
+        return View(_context.Products);
+    }
+
     public IActionResult Privacy() => View();
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

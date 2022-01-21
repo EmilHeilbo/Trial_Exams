@@ -7,20 +7,22 @@ namespace Trial_3.Controllers;
 
 public class HomeController : Controller
 {
-    private AppDbContext _context;
+    private ProductsViewModel _model = new ProductsViewModel();
 
-    public HomeController(AppDbContext context) => _context = context;
+    public HomeController(AppDbContext context) => _model.Products = context.Products;
 
-    public IActionResult Index() => View(_context.Products);
+    public IActionResult Index() => View(_model);
 
-    public IActionResult Update(int id, int age)
-    {
-        ViewData["PriceTotal"] = _context.Products.Find(id)?.CalculateFinalPrice(age);
-        return View(_context.Products);
-    }
+    [HttpPost]
+    public IActionResult Index(Guid pID, int age)
+        {
+            _model.Total = _model.Products.FirstOrDefault(p => p.Id.Equals(pID))?.CalculateFinalPrice(age) ?? 0m;
+            return View(_model);
+        }
 
     public IActionResult Privacy() => View();
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error() => View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+    public IActionResult Error() => View(new ErrorViewModel
+        { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
 }

@@ -1,8 +1,8 @@
 ﻿@using Trial_3.Data;
-@model IQueryable<Product>
+@model Trial_3.Models.ProductsViewModel
 @{
     ViewData["Title"] = "Home Page";
-    var _total = Decimal.Parse(ViewBag.TotalPrice as String ?? "0.0");
+    var _products = (Model.Products.Any()) ? Model.Products.ToList<Product>() : new List<Product>();
     var _dkk = new System.Globalization.CultureInfo("da-DK");
 }
 
@@ -11,28 +11,27 @@
     <div class="w-100">
         <p>The menu of today, courtesy of Chef Bootstrap and Razor the waiter:</p>
         <ul class="list-group">
-            @foreach (var product in Model)
+            @foreach (var product in _products)
             {
                 <li class="list-group-item">
                     @product.Name - @product.Price.ToString("C", _dkk)
                 </li>
             }
         </ul>
-        <form method="POST">
+        <form id="Update" method="post">
             <div class="input-group mb-6">
                 <label class="input-group-text" for="productSelect">Options</label>
-                <select class="form-select" id="productSelect">
-                    @foreach (var product in Model)
+                <select class="form-select" id="product" name="pID" required>
+                    @foreach (var product in _products)
                     {
                         <option value=@product.Id>@product.Name</option>
                     }
                 </select>
             </div>
             <div class="input-group mb-3">
-                <span class="input-group-text">@_total.ToString("C", _dkk)</span>
-                <input type="text" class="form-control" placeholder="Your age" aria-label="Your age"
-                        aria-describedby="button-addon2" id="ageInput" />
-                <input class="btn btn-primary" type="submit" value="Submit" />
+                <span class="input-group-text bg-info">@Model.Total.ToString("C", _dkk)</span>
+                <input type="number" class="form-control" placeholder="Your age" id="ageInput" name="age" required />
+                <button class="btn btn-primary">Update</button>
             </div>
         </form>
     </div>
